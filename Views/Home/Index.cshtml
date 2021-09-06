@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Search your SuperHero";
 }
 
 <div class="text-center">
@@ -9,5 +9,9 @@
         <input type="text" name="SearchCriteria" />
         <input type="submit" value="Search!"/>
     </form>
-
+    <form asp-controller="Character" asp-action="Index">
+        <input type="text" name="CharacterID" placeholder="write your character ID here!">
+        <input type="submit" value="Search!">
+    </form>
+    
 </div>

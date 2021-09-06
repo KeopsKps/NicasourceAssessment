@@ -40,3 +40,6 @@ C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\obj\Debug\net
 C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\obj\Debug\net5.0\NicasourceAssessment.csproj.CopyComplete
 C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\obj\Debug\net5.0\Razor\Views\Shared\CommonLayout.cshtml.g.cs
 C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\obj\Debug\net5.0\Razor\Views\Character\Index.cshtml.g.cs
+C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\obj\Debug\net5.0\Razor\Views\Character\Error.cshtml.g.cs
+C:\Users\50586\Desktop\PersonalData\Proyectos\NicasourceAssessment\obj\Debug\net5.0\Razor\Views\Home\SearchResult.cshtml.g.cs

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NicasourceAssessment.Models;
-using Newtonsoft.Json.Linq;
 
 namespace NicasourceAssessment.Controllers
 {
@@ -39,11 +38,11 @@ namespace NicasourceAssessment.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         [HttpPost]
-        public void Index(string SearchCriteria)
+        public ActionResult Index(string SearchCriteria)
         {
             string URL = "https://superheroapi.com/api/4368073683252121/search/" + SearchCriteria;
             Search SearchObject = new Search(URL);
-            Console.WriteLine(SearchObject.FormattedResponse["response"]);
+            return View(SearchObject.FormattedResponse);
         }
     }
 }
