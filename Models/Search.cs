@@ -10,16 +10,23 @@ namespace NicasourceAssessment.Models
 {
     public class Search
     {
-        public static readonly HttpClient client = new HttpClient();
-
-        private JObject JsonSearchResult;
-        
+        private static readonly HttpClient client = new HttpClient();
         [JsonInclude]
-        public string response {get; set;}
+        public JObject FormattedResponse {get; set;}
+        public string SearchURL {get; set;}
+        public Task<JObject> JsonSearchResultFormatted;
 
-        public  Search(string SearchURL)
+        public Search(string SearchURL)
         {
-            var JsonSearchResult = GetSearchResponse(SearchURL);
+            this.SearchURL = SearchURL;
+            FormattedResponse = GetFormattedResponse();
+        }
+
+        public JObject GetFormattedResponse()
+        {
+            JsonSearchResultFormatted = Task.Run( () => GetSearchResponse(this.SearchURL));
+            JsonSearchResultFormatted.Wait();
+            return JsonSearchResultFormatted.Result;
         }
 
         public async Task<JObject> GetSearchResponse(string SearchURL)
@@ -28,8 +35,7 @@ namespace NicasourceAssessment.Models
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var streamTask = await client.GetStringAsync(SearchURL);
             var msg = streamTask.ToString();
-            JsonSearchResult = JObject.Parse(msg);
-            return JsonSearchResult;
+            return JObject.Parse(msg);
         }
     }
 }
