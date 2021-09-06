@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Search your SuperHero here!</h1>
+
+    <form asp-controller="Home" asp-action="Index">
+        <input type="text" name="SearchCriteria" />
+        <input type="submit" value="Search!"/>
+    </form>
+
+</div>
