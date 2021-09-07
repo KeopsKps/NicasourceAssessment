@@ -24,7 +24,9 @@ namespace NicasourceAssessment.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            SearchResult searchResult = new SearchResult(false);
+            
+            return View(searchResult);
         }
 
         public IActionResult Privacy()
@@ -42,7 +44,10 @@ namespace NicasourceAssessment.Controllers
         {
             string URL = "https://superheroapi.com/api/4368073683252121/search/" + SearchCriteria;
             Search SearchObject = new Search(URL);
-            return View(SearchObject.FormattedResponse);
+            SearchResult searchResult = new SearchResult(true);
+            searchResult.response = SearchObject.FormattedResponse["response"].ToString();
+            //return View(SearchObject.FormattedResponse);
+            return View(searchResult);
         }
     }
 }

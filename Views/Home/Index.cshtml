@@ -1,4 +1,6 @@
-﻿@{
+﻿@model SearchResult;
+
+@{
     ViewData["Title"] = "Search your SuperHero";
 }
 
@@ -13,5 +15,11 @@
         <input type="text" name="CharacterID" placeholder="write your character ID here!">
         <input type="submit" value="Search!">
     </form>
-    
+    @if (@Model.IsSearchResult || @Model.response != null)
+    {
+        <p>@Model.response</p>
+    }
+    else{
+        <p>Anything to show</p>
+    }
 </div>
