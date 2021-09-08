@@ -11,10 +11,13 @@
         <input type="text" name="SearchCriteria" />
         <input type="submit" value="Search!"/>
     </form>
+    <!--
     <form asp-controller="Character" asp-action="Index">
         <input type="text" name="CharacterID" placeholder="write your character ID here!">
         <input type="submit" value="Search!">
     </form>
+    -->
+    <br/>
     @if (@ViewData["IsSearchResult"].Equals(true))
     {
         <table class="table table-hover">
@@ -27,8 +30,12 @@
             <tbody>
                 @foreach(var CharacterInfo in Model)
                 {
-                    <tr>
-                        <th scope="row">@CharacterInfo.Name</th>
+                    <tr onclick="location.href='@Url.Action("Index", "Character", new {CharacterID = "" + @CharacterInfo.Id})'">
+                        <th scope="row">
+                            <a >
+                                @CharacterInfo.Name 
+                            </a>
+                        </th>
                         <td>@CharacterInfo.Gender</td>
                     </tr>
                 }

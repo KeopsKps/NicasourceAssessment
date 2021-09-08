@@ -55,6 +55,7 @@ namespace NicasourceAssessment.Controllers
                     Character.Add(
                         new CharacterSearch(){
                             Response = SearchObject.FormattedResponse["results"].ToString(),
+                            Id = CharacterInfo["id"].ToString(),
                             ImageURL = CharacterInfo["image"]["url"].ToString(),
                             Name = CharacterInfo["name"].ToString(),
                             Gender = CharacterInfo["appearance"]["gender"].ToString()
