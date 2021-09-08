@@ -5,19 +5,91 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Search your SuperHero here!</h1>
-
-    <form asp-controller="Home" asp-action="Index">
-        <input type="text" name="SearchCriteria" />
-        <input type="submit" value="Search!"/>
-    </form>
-    <!--
-    <form asp-controller="Character" asp-action="Index">
-        <input type="text" name="CharacterID" placeholder="write your character ID here!">
-        <input type="submit" value="Search!">
-    </form>
-    -->
+    <div class="col-lg-12"></div>
+        <h1>Search your SuperHero here!</h1>
+        <br/>
+        <form asp-controller="Home" asp-action="Index">
+            <input type="text" name="SearchCriteria" />
+            <input type="submit" value="Search!"/>
+        </form>
+    </div>
     <br/>
+
+@if (@ViewData["IsSearchResult"].Equals(true))
+{
+<div class="event-schedule-area-two bg-color pad100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="home" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col">Id</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Gender</th>
+                                        <th class="text-center" scope="col">Full profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var CharacterInfo in Model)
+                                    {
+
+                
+                                    <tr class="inner-box">
+                                        <th scope="row">
+                                            <div class="event-date">
+                                                <p>@CharacterInfo.Id</p>
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <div class="event-img">
+                                                <img src="@CharacterInfo.ImageURL" alt="" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="event-wrap">
+                                                <h3><a onclick="location.href='@Url.Action("Index", "Character", new {CharacterID = "" + @CharacterInfo.Id})'">@CharacterInfo.Name</a></h3>
+                                                <div class="meta">
+                                                    <div class="organizers">
+                                                        <a href="#">Aslan Lingker</a>
+                                                    </div>
+                                                    <div class="categories">
+                                                        <a href="#">Inspire</a>
+                                                    </div>
+                                                    <div class="time">
+                                                        <span>05:35 AM - 08:00 AM 2h 25'</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="r-no">
+                                                <span>@CharacterInfo.Gender</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="primary-btn">
+                                                <a class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Character", new {CharacterID = "" + @CharacterInfo.Id})'">Read More</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /col end-->
+        </div>
+        <!-- /row end-->
+    </div>
+</div>
+}
     @if (@ViewData["IsSearchResult"].Equals(true))
     {
         <table class="table table-hover">

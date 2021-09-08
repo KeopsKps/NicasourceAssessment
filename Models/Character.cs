@@ -1,11 +1,9 @@
 namespace NicasourceAssessment.Models
 {
-    public class Character
+    public class Character : CharacterSearch
     {
-        public string id {get; set;}
-        public string name {get; set;}
-        public string fullName {get; set;}
-        public string firstAppearance {get; set;}
+        public string FullName {get; set;}
+        public string FirstAppearance {get; set;}
 
     }
 }
