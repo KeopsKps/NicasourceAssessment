@@ -17,7 +17,7 @@
 
 @if (@ViewData["IsSearchResult"].Equals(true))
 {
-<div class="event-schedule-area-two bg-color pad100">
+<div class="event-schedule-area-two bg-color pad100 col-lg-12">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -53,17 +53,6 @@
                                         <td>
                                             <div class="event-wrap">
                                                 <h3><a onclick="location.href='@Url.Action("Index", "Character", new {CharacterID = "" + @CharacterInfo.Id})'">@CharacterInfo.Name</a></h3>
-                                                <div class="meta">
-                                                    <div class="organizers">
-                                                        <a href="#">Aslan Lingker</a>
-                                                    </div>
-                                                    <div class="categories">
-                                                        <a href="#">Inspire</a>
-                                                    </div>
-                                                    <div class="time">
-                                                        <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </td>
                                         <td>
@@ -90,28 +79,4 @@
     </div>
 </div>
 }
-    @if (@ViewData["IsSearchResult"].Equals(true))
-    {
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Gender</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(var CharacterInfo in Model)
-                {
-                    <tr onclick="location.href='@Url.Action("Index", "Character", new {CharacterID = "" + @CharacterInfo.Id})'">
-                        <th scope="row">
-                            <a >
-                                @CharacterInfo.Name 
-                            </a>
-                        </th>
-                        <td>@CharacterInfo.Gender</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
 </div>

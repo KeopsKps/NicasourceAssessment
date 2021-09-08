@@ -27,6 +27,9 @@ namespace NicasourceAssessment.Controllers
                 SearchedCharacter.FullName = SearchObject.FormattedResponse["biography"]["full-name"].ToString();
                 SearchedCharacter.FirstAppearance = SearchObject.FormattedResponse["biography"]["first-appearance"].ToString();
                 SearchedCharacter.ImageURL = SearchObject.FormattedResponse["image"]["url"].ToString();
+                SearchedCharacter.PowerStats = (JObject) SearchObject.FormattedResponse["powerstats"];
+                SearchedCharacter.Appeareance = (JObject) SearchObject.FormattedResponse["appearance"];
+                SearchedCharacter.Biography = (JObject) SearchObject.FormattedResponse["biography"];
                 return View(SearchedCharacter);
             }
             else
