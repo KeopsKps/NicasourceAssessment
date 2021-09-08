@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using NicasourceAssessment.Models;
 
 namespace NicasourceAssessment.Controllers
@@ -16,7 +17,6 @@ namespace NicasourceAssessment.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public static readonly HttpClient client = new HttpClient();
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -24,9 +24,9 @@ namespace NicasourceAssessment.Controllers
 
         public IActionResult Index()
         {
-            SearchResult searchResult = new SearchResult(false);
-            
-            return View(searchResult);
+            ViewBag.IsSearchResult = false;
+            List<CharacterSearch> EmptyObject = new List<CharacterSearch>();
+            return View(EmptyObject);
         }
 
         public IActionResult Privacy()
@@ -45,9 +45,24 @@ namespace NicasourceAssessment.Controllers
             string URL = "https://superheroapi.com/api/4368073683252121/search/" + SearchCriteria;
             Search SearchObject = new Search(URL);
             SearchResult searchResult = new SearchResult(true);
-            searchResult.response = SearchObject.FormattedResponse["response"].ToString();
-            //return View(SearchObject.FormattedResponse);
-            return View(searchResult);
+            ViewBag.IsSearchResult = false;
+            List<CharacterSearch> Character = new List<CharacterSearch>();
+            if (SearchObject.FormattedResponse["response"].ToString().Equals("success")) 
+            {    
+                ViewBag.IsSearchResult = true;
+                foreach(JObject CharacterInfo in SearchObject.FormattedResponse["results"])
+                {
+                    Character.Add(
+                        new CharacterSearch(){
+                            Response = SearchObject.FormattedResponse["results"].ToString(),
+                            ImageURL = CharacterInfo["image"]["url"].ToString(),
+                            Name = CharacterInfo["name"].ToString(),
+                            Gender = CharacterInfo["appearance"]["gender"].ToString()
+                        }
+                    );
+                }  
+            }
+            return View(Character);
         }
     }
 }

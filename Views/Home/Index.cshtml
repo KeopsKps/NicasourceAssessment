@@ -1,4 +1,4 @@
-﻿@model SearchResult;
+﻿@model List<CharacterSearch>;
 
 @{
     ViewData["Title"] = "Search your SuperHero";
@@ -15,11 +15,24 @@
         <input type="text" name="CharacterID" placeholder="write your character ID here!">
         <input type="submit" value="Search!">
     </form>
-    @if (@Model.IsSearchResult || @Model.response != null)
+    @if (@ViewData["IsSearchResult"].Equals(true))
     {
-        <p>@Model.response</p>
-    }
-    else{
-        <p>Anything to show</p>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var CharacterInfo in Model)
+                {
+                    <tr>
+                        <th scope="row">@CharacterInfo.Name</th>
+                        <td>@CharacterInfo.Gender</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>
